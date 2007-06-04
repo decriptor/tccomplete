@@ -34,7 +34,8 @@ namespace TestCaseComplete
 			foreach(BuildTreeNode BTN in builds)
 			{
                 //Not a good way to do this.  Need to fix this!
-				tv_ProjectBuild.Nodes[BTN.ProjectID - 1].Nodes.Add(BTN);
+                //tv_ProjectBuild.Nodes[BTN.ProjectID - 1].Nodes.Clear();
+				tv_ProjectBuild.Nodes[BTN.ProjectID - 1].Nodes.Add(BTN.Name = BTN.BuildName);
 			}
 		}
 
@@ -85,6 +86,7 @@ namespace TestCaseComplete
 		#endregion
 		#region Views        private void BuildTreeView()
 		{
+            tv_ProjectBuild.Nodes.Clear();
 			MFC.RefreshProjects();
 			MFC.RefreshBuilds();
 		}
@@ -92,7 +94,7 @@ namespace TestCaseComplete
 	}
 }
 
-//public MainInterface()
+//        public MainInterface()
 //        {
 //            InitializeComponent();
 //            BuildStatusListView();

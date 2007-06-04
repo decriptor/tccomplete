@@ -11,21 +11,19 @@ namespace TestCaseComplete
         String userName, realName;
         bool admin;
         bool isValidUser = false;
-        int filter, build, buildRights, userRights, tcRights, osRights, passRights;
+        int build, project, testCase, userAdmin, readWrite;
         public UserCredentials(DataRow dr)
         {
             if (dr != null)
             {
                 userName = dr[0].ToString();
-                realName = dr[3].ToString();
+                userAdmin = Convert.ToInt32(dr[1]);
                 admin = Convert.ToBoolean(dr[2]);
-                filter = Convert.ToInt32(dr[4]);
+                realName = dr[3].ToString();
+                project = Convert.ToInt32(dr[4]);
                 build = Convert.ToInt32(dr[5]);
-                buildRights = Convert.ToInt32(dr[6]);
-                userRights = Convert.ToInt32(dr[1]);
-                tcRights = Convert.ToInt32(dr[7]);
-                osRights = Convert.ToInt32(dr[8]);
-                passRights = Convert.ToInt32(dr[9]);
+                testCase = Convert.ToInt32(dr[6]);
+                readWrite = Convert.ToInt32(dr[7]);
                 isValidUser = true;
             }
             else
@@ -45,34 +43,27 @@ namespace TestCaseComplete
         {
             get { return admin; }
         }
-        public int Filter
-        {
-            get { return filter; }
-        }        
         public int Build
         {
             get { return build; }
+        }        
+        public int Project
+        {
+            get { return project; }
         }
-        public int BuildRights
+        public int TestCase
         {
-            get { return buildRights; }
-        }
-        public int UserRights
-        {
-            get { return userRights; }
-        }
-        public int TCRights
-        {
-            get { return tcRights; }        }
-        public int OSRights
-        {
-            get { return osRights; }
-        }
-        public int PassRights
-        {
-            get { return passRights; }
+            get { return testCase; }
         }
 
+        public int UserAdmin
+        {
+            get { return userAdmin; }
+        }
+
+        public int ReadWrite
+        {
+            get { return readWrite; }        }
         public bool isUserValid
         {
             get { return isValidUser; }

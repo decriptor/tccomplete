@@ -25,11 +25,11 @@ namespace TestCaseComplete
 		private void InitializeFields()
 		{
 			projectDS = DataAccess.ProjectRetrieve(null, null);
-			if ((projectDS.Tables.Count > 0) && (projectDS.Tables["tcdb_projects"].Rows.Count > 0))
+			if ((projectDS.Tables.Count > 0) && (projectDS.Tables["projects"].Rows.Count > 0))
 			{
-				for (int i = 0; i < projectDS.Tables["tcdb_projects"].Rows.Count; i++)
+				for (int i = 0; i < projectDS.Tables["projects"].Rows.Count; i++)
 				{
-					DataRow projectDR = projectDS.Tables["tcdb_projects"].Rows[i];
+					DataRow projectDR = projectDS.Tables["projects"].Rows[i];
 					cb_ProjectList.Items.Add(new Project(projectDR));
 				}
 			}

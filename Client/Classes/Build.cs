@@ -18,7 +18,7 @@ namespace TestCaseComplete
 		{
 			if (BuildRow != null)
 			{
-				_projectID = Convert.ToInt32(BuildRow["uid"]);
+				_projectID = Convert.ToInt32(BuildRow["id"]);
 				_buildName = BuildRow["name"].ToString();
 			}
 		}
@@ -54,8 +54,8 @@ namespace TestCaseComplete
 		{
 			if (BuildRow != null)
 			{
-				_buildID = Convert.ToInt32(BuildRow["uid"]);
-				_projectID = Convert.ToInt32(BuildRow["project_uid"]);
+				_buildID = Convert.ToInt32(BuildRow["id"]);
+				_projectID = Convert.ToInt32(BuildRow["project_id"]);
 				_buildName = BuildRow["name"].ToString();
 				_buildDescription = BuildRow["description"].ToString();
 				_buildDate = BuildRow["date"].ToString();

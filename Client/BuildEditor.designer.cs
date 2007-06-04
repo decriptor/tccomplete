@@ -1,6 +1,6 @@
 namespace TestCaseComplete
 {
-    partial class Form_BuildTCEditor
+    partial class Form_BuildEditor
     {
         /// <summary>
         /// Required designer variable.

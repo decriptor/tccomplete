@@ -38,11 +38,11 @@ namespace TestCaseComplete
 			try
 			{
 				ds = _dataAccess.ProjectRetrieve(null, null);
-				if ((ds.Tables.Count > 0) && (ds.Tables["tcdb_projects"].Rows.Count > 0))
+				if ((ds.Tables.Count > 0) && (ds.Tables["projects"].Rows.Count > 0))
 				{
-					for (int i = 0; i < ds.Tables["tcdb_projects"].Rows.Count; i++)
+					for (int i = 0; i < ds.Tables["projects"].Rows.Count; i++)
 					{
-						DataRow projectDR = ds.Tables["tcdb_projects"].Rows[i];
+						DataRow projectDR = ds.Tables["projects"].Rows[i];
 						projects.Add(new ProjectTreeNode(projectDR));
 					}
 				}
@@ -66,11 +66,11 @@ namespace TestCaseComplete
 			try
 			{
 				ds = _dataAccess.BuildRetrieve(null, null, null);
-				if ((ds.Tables.Count > 0) && (ds.Tables["tcdb_builds"].Rows.Count > 0))
+				if ((ds.Tables.Count > 0) && (ds.Tables["builds"].Rows.Count > 0))
 				{
-					for (int i = 0; i < ds.Tables["tcdb_builds"].Rows.Count; i++)
+					for (int i = 0; i < ds.Tables["builds"].Rows.Count; i++)
 					{
-						DataRow buildDR = ds.Tables["tcdb_builds"].Rows[i];
+						DataRow buildDR = ds.Tables["builds"].Rows[i];
 						builds.Add(new BuildTreeNode(buildDR));
 					}
 				}

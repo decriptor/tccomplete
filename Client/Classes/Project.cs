@@ -16,7 +16,7 @@ namespace TestCaseComplete
         {
             if (dr != null)
             {
-                _projectID = Convert.ToInt32(dr["uid"]);
+                _projectID = Convert.ToInt32(dr["id"]);
                 _projectName = dr["name"].ToString();
             }
         }
@@ -47,9 +47,10 @@ namespace TestCaseComplete
 		{
 			if (ProjectRow != null)
 			{
-				_projectID = Convert.ToInt32(ProjectRow["uid"]);
+				_projectID = Convert.ToInt32(ProjectRow["id"]);
 				_projectName = ProjectRow["name"].ToString();
 				_projectDescription = ProjectRow["description"].ToString();
+                Name = _projectName;
 			}        }
 		public int ID
 		{

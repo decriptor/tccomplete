@@ -5,42 +5,67 @@ namespace tccomplete.Interfaces
 {
     public interface IDataAccess
     {
+        #region Users
         DataSet UserLogin(string UserName, string UserPassword);
 
-        void UserInsert();
+        void UserInsert(string userName, string userPassword, int userAdmin, int administrator, string realName,
+            int projectAdmin, int buildAdmin, int testCaseAdmin, int readWriteAccess);
 
-        void UserUpdate();
+        void UserUpdate(string oldUserName, string newUserName, int userAdmin, int admin, string realName, int projectAdmin,
+            int buildAdmin, int testCaseAdmin, int readWriteAccess);
 
         void UserDelete(int userID);
+        #endregion
 
-        DataSet ProjectRetrieve(int? projectUID, string projectName);
+        #region Project
+        DataSet ProjectRetrieve(int? projectID, string projectName);
 
         void ProjectInsert(string projectName, string projectDescription);
 
-        void ProjectUpdate();
+        void ProjectUpdate(int projectID, string projectName, string projectDescription);
 
-        void ProjectDelete();
+        void ProjectDelete(int projectID);
+        #endregion
 
+        #region Builds
         DataSet BuildRetrieve(int? buildID, int? projectID, string buildName);
 
-        void BuildInsert(int projectUID, string buildName, string buildDescription, int buildDisplay);
+        void BuildInsert(int projectID, string buildName, string buildDescription, int buildDisplay);
 
-        void BuildUpdate();
+        void BuildUpdate(int buildID, int projectID, string buildName, string buildDescription, int buildDisplay);
 
-        void BuildDelete();
+        void BuildDelete(int buildID);
+        #endregion
 
-        DataSet TestCaseRetrieve(int? tcuid);
+        #region Results
+        void ResultsInsert(int testCaseID, int buildID, string resultStatus, string updatedBy, string updateNotes, string bugID);
 
-        void TestCaseInsert(int ProjectUID, string TCOwner, int TCDefaultPriority, string TCShortDesc, int TCEtcSetup, int TCEtcRun,
+        DataSet ResultsRetrieve(int? resultID, int? testCaseID, int? buildID, string resultStatus, string updatedBy, string updateNotes, string bugID, DateTime? checkOutTime);
 
-            int TCEtcClean, string TCYouID, string TCDefectID, string TCPassFailDesc, string TCSetupSteps, string TCRunSteps, string TCCleanSteps);
+        void ResultsCheckIn(int resultID, int newStatus, string updatedBy, string updateNotes);
+        
+        void ResultsCheckOut(int testCaseID, int buildID);
+        
+        void ResultsUpdate(int testCaseID, int buildID, string resultStatus, string updatedBy, string updateNotes);
 
-        void TestCaseUpdate();
+        void ResultsDelete(int testCaseID, int buildID);
+        #endregion
 
-        void TestCaseDelete();
+        #region Test Case
+        DataSet TestCaseRetrieve(int? testCaseID, int? projectID);
 
-        void HistoryInsert(int resultsID, string userName, int status, string defectID);    
+        void TestCaseInsert(int projectID, string testCaseOwner, int defaultPriority, string shortDescription, int setupTime, int runTime,
+            int cleanTime, string userID, string defectID, string passFailDescription, string setupSteps, string runSteps, string cleanSteps);
 
+        void TestCaseUpdate(int testCaseID, int projectID, string testCaseOwner, int defaultPriority, string shortDescription, int setupTime, int runTime,
+            int cleanTime, string userID, string defectID, string passFailDescription, string setupSteps, string runSteps, string cleanSteps);
+
+        void TestCaseDelete(int testCaseID);
+        #endregion
+
+        #region Work List
+        DataSet WorkListRetrieve(string updatedBy);
+        #endregion
     }
 
 }

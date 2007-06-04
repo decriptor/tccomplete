@@ -29,6 +29,7 @@ namespace TestCaseComplete
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                throw ex;
             }
             InitializeComponent();
         }
@@ -62,10 +63,11 @@ namespace TestCaseComplete
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
+                throw ex;
             }
-            if ((userDS != null) && (userDS.Tables.Count > 0) && (userDS.Tables["login"].Rows.Count > 0))
+            if ((userDS != null) && (userDS.Tables.Count > 0) && (userDS.Tables["users"].Rows.Count > 0))
             {
-                DataRow userRow = userDS.Tables["login"].Rows[0];
+                DataRow userRow = userDS.Tables["users"].Rows[0];
                 loggedInUser = new UserCredentials(userRow);
                 if (loggedInUser.isUserValid)
                 {

@@ -185,7 +185,7 @@ namespace TestCaseComplete
             // TSM_About
             // 
             this.TSM_About.Name = "TSM_About";
-            this.TSM_About.Size = new System.Drawing.Size(152, 22);
+            this.TSM_About.Size = new System.Drawing.Size(114, 22);
             this.TSM_About.Text = "A&bout";
             this.TSM_About.Click += new System.EventHandler(this.TSM_About_Click);
             // 
@@ -234,6 +234,7 @@ namespace TestCaseComplete
             this.tv_ProjectBuild.Dock = System.Windows.Forms.DockStyle.Left;
             this.tv_ProjectBuild.Location = new System.Drawing.Point(0, 24);
             this.tv_ProjectBuild.Name = "tv_ProjectBuild";
+            this.tv_ProjectBuild.ShowNodeToolTips = true;
             this.tv_ProjectBuild.Size = new System.Drawing.Size(174, 595);
             this.tv_ProjectBuild.TabIndex = 6;
             // 

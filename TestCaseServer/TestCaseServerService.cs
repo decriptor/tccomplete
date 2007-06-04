@@ -33,7 +33,49 @@ namespace TestCaseServer
 			this.AutoLog = true;
             LOGGER.LogEvent(Logger.LOGTYPE.NOTICE, Logger.APPTYPE.SERVER, "New Test Case Server Service Created");
 		}
-		
+
+        public static void Main(string[] args)
+        {
+            //if (args.Length > 0)
+            //{
+            //    ServiceBase[] ServicesToRun;
+            //    ServicesToRun = new ServiceBase[] { new TestCaseServerService() };
+            //    ServiceBase.Run(ServicesToRun);
+
+                int i = 0;
+                while(args.Length >= 0)
+                {
+                    switch(args[i].ToLower())
+                    {
+                        case "usage":
+                            PrintUsage();
+                            break;
+                        case "service":
+                            ServiceBase[] ServicesToRun;
+                            ServicesToRun = new ServiceBase[] { new TestCaseServerService() };
+                            ServiceBase.Run(ServicesToRun);
+                            break;
+                        case "standalone":
+                            TestCaseServerService ips = new TestCaseServerService();
+                            ips.OnStart(null);
+                            Thread.Sleep(Timeout.Infinite);
+                            break;                    
+                        case "ip":
+                            break;
+                        default:
+                            PrintUsage();
+                            break;
+                    }
+                }
+            //}
+            //else
+            //{
+            //    ServiceBase[] ServicesToRun;
+            //    ServicesToRun = new ServiceBase[] { new TestCaseServerService() };
+            //    ServiceBase.Run(ServicesToRun);
+            //}
+        }
+
 		protected override void OnStart (string[] args)
 		{
             LOGGER.LogEvent(Logger.LOGTYPE.NOTICE, Logger.APPTYPE.SERVER, "Test Case Server starting...");
@@ -93,20 +135,9 @@ namespace TestCaseServer
             }
         }
 
-        public static void Main(string[] args)
+        private static void PrintUsage()
         {
-            if (args.Length > 0)
-            {
-                TestCaseServerService ips = new TestCaseServerService();
-                ips.OnStart(null);
-                Thread.Sleep(Timeout.Infinite);
-            }
-            else
-            {
-                ServiceBase[] ServicesToRun;
-                ServicesToRun = new ServiceBase[] { new TestCaseServerService() };
-                ServiceBase.Run(ServicesToRun);
-            }
+            Console.WriteLine("HELP ME!!!");
         }
     }
 }
