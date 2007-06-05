@@ -21,7 +21,7 @@ namespace TestCaseServer.Databases
         #region Constructors
         static MySQL()
         {
-            ConnectString = string.Format(ConnectStringFormat, "166.70.62.130", "tcdbuser", "tcdbuser001!");
+            ConnectString = string.Format(ConnectStringFormat, "localhost", "tcdbuser", "tcdbuser001!");
         }
 
         public MySQL()
