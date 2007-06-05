@@ -21,7 +21,7 @@ namespace TestCaseServer.Databases
         #region Constructors
         static MySQL()
         {
-            ConnectString = string.Format(ConnectStringFormat, "localhost", "tcdbuser", "tcdbuser001!");
+            ConnectString = string.Format(ConnectStringFormat, "166.70.62.130", "tcdbuser", "tcdbuser001!");
         }
 
         public MySQL()
@@ -56,6 +56,7 @@ namespace TestCaseServer.Databases
             {
                 LOGGER.LogEvent(Logger.LOGTYPE.ERR, Logger.APPTYPE.MYSQL, ex.Message);
                 LOGGER.LogEvent(Logger.LOGTYPE.ERR, Logger.APPTYPE.MYSQL, "Login Failed: user " + userName);
+                throw ex;
             }
             return userDS;
         }
@@ -225,6 +226,7 @@ namespace TestCaseServer.Databases
             catch (MySqlException ex)
             {
                 LOGGER.LogEvent(Logger.LOGTYPE.ERR, Logger.APPTYPE.MYSQL, ex.Message);
+                throw ex;
             }
             return userDS;
         }
@@ -292,19 +294,19 @@ namespace TestCaseServer.Databases
         /// <summary>
         /// Create and Insert a new Test Case
         /// </summary>
-        /// <param name="ProjectUID"></param>
-        /// <param name="TCOwner"></param>
-        /// <param name="TCDefaultPriority"></param>
-        /// <param name="TCShortDesc"></param>
-        /// <param name="TCEtcSetup"></param>
-        /// <param name="TCEtcRun"></param>
-        /// <param name="TCEtcClean"></param>
-        /// <param name="TCYouID"></param>
-        /// <param name="TCDefectID"></param>
-        /// <param name="TCPassFailDesc"></param>
-        /// <param name="TCSetupSteps"></param>
-        /// <param name="TCRunSteps"></param>
-        /// <param name="TCCleanSteps"></param>
+        /// <param name="projectID"></param>
+        /// <param name="testCaseOwner"></param>
+        /// <param name="defaultPriority"></param>
+        /// <param name="shortDescription"></param>
+        /// <param name="setupTime"></param>
+        /// <param name="runTime"></param>
+        /// <param name="cleanTime"></param>
+        /// <param name="userID"></param>
+        /// <param name="defectID"></param>
+        /// <param name="passFailDescription"></param>
+        /// <param name="setupSteps"></param>
+        /// <param name="runSteps"></param>
+        /// <param name="cleanSteps"></param>
         public void TestCaseInsert(int projectID, string testCaseOwner, int defaultPriority, string shortDescription, int setupTime, int runTime,
             int cleanTime, string userID, string defectID, string passFailDescription, string setupSteps, string runSteps, string cleanSteps)
         {
@@ -361,6 +363,7 @@ namespace TestCaseServer.Databases
             catch (MySqlException ex)
             {
                 LOGGER.LogEvent(Logger.LOGTYPE.ERR, Logger.APPTYPE.MYSQL, ex.Message);
+                throw ex;
             }
             return userDS;
         }
@@ -769,5 +772,30 @@ namespace TestCaseServer.Databases
             return workListDS;
         }
         #endregion
+
+        public DataSet HistoryRetrieve(int? resultID, DateTime? historyTime, string userName, int? status, string defectID)
+        {
+            DataSet historyDS = new DataSet();
+            try
+            {
+                using (MySqlConnection mySQLConnection = new MySqlConnection(ConnectString))
+                using (MySqlCommand cmd = new MySqlCommand("tccomplete.sp_historyRetrieve", mySQLConnection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    MySqlDataAdapter DA = new MySqlDataAdapter(cmd);
+					cmd.Parameters.AddWithValue("?ResultID", resultID);
+                    cmd.Parameters.AddWithValue("?HistoryTime", historyTime);
+                    cmd.Parameters.AddWithValue("?HistoryUserName", userName);
+                    cmd.Parameters.AddWithValue("?HistoryStatus", status);
+                    cmd.Parameters.AddWithValue("?HistoryDefectID", defectID);
+					DA.Fill(historyDS, "history");
+                }
+            }
+            catch (MySqlException ex)
+            {
+                LOGGER.LogEvent(Logger.LOGTYPE.ERR, Logger.APPTYPE.MYSQL, ex.Message);
+            }
+			return historyDS;
+        }
     }
 }

@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCaseServer", "TestCaseServer\TestCaseServer.csproj", "{A1B3B475-158F-44E1-8309-28D313E08CDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{D8B4E0A5-C079-49ED-A06F-85ED31E4A982}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCaseClient", "TestCaseClient\TestCaseClient.csproj", "{D8B4E0A5-C079-49ED-A06F-85ED31E4A982}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

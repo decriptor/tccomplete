@@ -161,5 +161,12 @@ namespace TestCaseServer
         }
         #endregion
 
+        #region History
+        public DataSet HistoryRetrieve(int? resultID, DateTime? historyTime, string userName, int? status, string defectID)
+        {
+            return _database.HistoryRetrieve(resultID, historyTime, userName, status, defectID);
+        }
+        #endregion
+
     }
 } 

@@ -1,3 +1,8 @@
+********* 6/4/2007  *********
+
+Found a newer older version and merged many of the changes.  These changes
+brought several new features.
+
 ********* 6/2/2007  *********
 
 Redid the database.  Cleaned up all tables names, column names, and stored

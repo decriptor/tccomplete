@@ -66,7 +66,10 @@ namespace tccomplete.Interfaces
         #region Work List
         DataSet WorkListRetrieve(string updatedBy);
         #endregion
-    }
 
+        #region History
+        DataSet HistoryRetrieve(int? resultID, DateTime? historyTime, string userName, int? status, string defectID);
+        #endregion
+    }
 }
 

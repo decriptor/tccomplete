@@ -341,7 +341,7 @@ END|
 CREATE DEFINER=`tcdbuser`@`10.1.1.%` PROCEDURE `sp_TestCaseUpdate`(testCaseID int(11), IN projectID int(11), IN testCaseOwner tinytext, IN defaultPriority int(11), IN shortDescription tinytext, IN setupTime int(11), IN runTime int(11), IN cleanTime int(11), IN userID varchar(64), IN defectID varchar(15), IN statusDescription mediumtext, IN setupSteps mediumtext, IN runSteps mediumtext, IN cleanSteps mediumtext)
 BEGIN
 UPDATE testcases
-SET project_id = projectID, owner = testCaseOwner, default_priority = defaultPriority, short_description = shortDescription, setup_time = setupTime, run_time = runTime, clean_time = cleanTime, user_id = userID, defect_id = TCDefectID, status_description = statusDescription, setup_steps = setupSteps, run_steps = runSteps, clean_steps = cleanSteps
+SET project_id = projectID, owner = testCaseOwner, default_priority = defaultPriority, short_description = shortDescription, setup_time = setupTime, run_time = runTime, clean_time = cleanTime, user_id = userID, defect_id = defectID, status_description = statusDescription, setup_steps = setupSteps, run_steps = runSteps, clean_steps = cleanSteps
 WHERE (id = testCaseID);
 END|
 -- ################### Users ###################
