@@ -1,6 +1,6 @@
 namespace TestCaseComplete
 {
-    partial class Form_CreateProject
+    partial class Form_CEProject
     {
         /// <summary>
         /// Required designer variable.
@@ -90,14 +90,14 @@ namespace TestCaseComplete
             this.lbl_ProjectDescription.TabIndex = 6;
             this.lbl_ProjectDescription.Text = "Description:";
             // 
-            // Form_CreateProject
+            // Form_CEProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btn_Cancel;
             this.ClientSize = new System.Drawing.Size(413, 181);
-            this.Controls.Add(this.rtb_ProjectDescription);
             this.Controls.Add(this.lbl_ProjectDescription);
+            this.Controls.Add(this.rtb_ProjectDescription);
             this.Controls.Add(this.txt_ProjectName);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_Save);
@@ -105,12 +105,12 @@ namespace TestCaseComplete
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form_CreateProject";
+            this.Name = "Form_CEProject";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Create Project";
+            this.Text = "Create Edit Project";
             this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();

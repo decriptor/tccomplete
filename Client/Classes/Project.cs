@@ -8,10 +8,12 @@ namespace TestCaseComplete
 {
     class Project
     {
+
         #region Variables
         int _projectID = -1;
         string _projectName = string.Empty;
-        #endregion
+        #endregion
+
         public Project(DataRow dr)
         {
             if (dr != null)
@@ -19,30 +21,35 @@ namespace TestCaseComplete
                 _projectID = Convert.ToInt32(dr["id"]);
                 _projectName = dr["name"].ToString();
             }
-        }
+        }
+
 		public int ID
 		{
 			get { return _projectID; }
-		}
+		}
+
 		public string Name
 		{
 			get { return _projectName; }
-		}
+		}
+		
         public override string ToString()
         {
             return _projectName;
-        }    }
+        }
+    }
 
     /// <summary>
     /// Generates a Project Tree Node from a DataRow
     /// </summary>
 	class ProjectTreeNode : TreeNode
 	{
-		#region Variables
+		#region Variables
 		int _projectID = -1;
 		string _projectName = string.Empty;
-		string _projectDescription = string.Empty;
-		#endregion        
+		string _projectDescription = string.Empty;
+		#endregion
+
 		public ProjectTreeNode(DataRow ProjectRow)
 		{
 			if (ProjectRow != null)
@@ -50,21 +57,35 @@ namespace TestCaseComplete
 				_projectID = Convert.ToInt32(ProjectRow["id"]);
 				_projectName = ProjectRow["name"].ToString();
 				_projectDescription = ProjectRow["description"].ToString();
-                Name = _projectName;
-			}        }
+				SetOptions();
+			}
+		}
+
+		private void SetOptions()
+		{
+			this.Text = _projectName;
+			this.ToolTipText = _projectDescription;
+		}
+
 		public int ID
 		{
 			get { return _projectID; }
-		}
+		}
+
 		public string ProjectName
 		{
 			get { return _projectName; }
-		}
+		}
+
 		public string Description
 		{
 			get { return _projectDescription; }
-		}                public override string ToString()        {
+		}
+		
+		public override string ToString()
+		{
 			return _projectName;
-		}
+		}
+
 	}
 }

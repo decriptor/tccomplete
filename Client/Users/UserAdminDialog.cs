@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace TestCaseComplete
 {
-	public partial class BuildEditDialog : Form
+	public partial class Form_UserAdminDialog : Form
 	{
-		public BuildEditDialog()
+		public Form_UserAdminDialog()
 		{
 			InitializeComponent();
 		}

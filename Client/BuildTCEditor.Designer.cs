@@ -1,12 +1,12 @@
 namespace TestCaseComplete
 {
-    partial class Form_BuildEditor
+    partial class Form_BuildTCEditor
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        
+
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -18,14 +18,17 @@ namespace TestCaseComplete
                 components.Dispose();
             }
             base.Dispose(disposing);
-        }
-        #region Windows Form Designer generated code
+        }
+
+        #region Windows Form Designer generated code
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-        {            this.btn_Save = new System.Windows.Forms.Button();
+        {
+            this.btn_Save = new System.Windows.Forms.Button();
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.lbl_project = new System.Windows.Forms.Label();
             this.lbl_build = new System.Windows.Forms.Label();
@@ -34,8 +37,10 @@ namespace TestCaseComplete
             this.lsv_TCWindow = new System.Windows.Forms.ListView();
             this.Test_Case_Name = new System.Windows.Forms.ColumnHeader();
             this.Assigned = new System.Windows.Forms.ColumnHeader();
-            this.btn_Edit = new System.Windows.Forms.Button();            this.SuspendLayout();
-            //             // btn_Save
+            this.btn_Edit = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // btn_Save
             // 
             this.btn_Save.Location = new System.Drawing.Point(319, 653);
             this.btn_Save.Name = "btn_Save";
@@ -126,10 +131,12 @@ namespace TestCaseComplete
             this.btn_Edit.UseVisualStyleBackColor = true;
             // 
             // Form_BuildTCEditor
-            //             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(485, 681);
-            this.Controls.Add(this.btn_Edit);            this.Controls.Add(this.lsv_TCWindow);
+            this.Controls.Add(this.btn_Edit);
+            this.Controls.Add(this.lsv_TCWindow);
             this.Controls.Add(this.cb_Project);
             this.Controls.Add(this.cb_Build);
             this.Controls.Add(this.lbl_build);
@@ -144,16 +151,19 @@ namespace TestCaseComplete
             this.Text = "Build TC Editor";
             this.ResumeLayout(false);
             this.PerformLayout();
-        }
-        #endregion
-
+
+        }
+
+        #endregion
+
         private System.Windows.Forms.Button btn_Save;
         private System.Windows.Forms.Button btn_Cancel;
         private System.Windows.Forms.Label lbl_project;
         private System.Windows.Forms.Label lbl_build;
         private System.Windows.Forms.ComboBox cb_Build;
         private System.Windows.Forms.ComboBox cb_Project;
-        private System.Windows.Forms.ListView lsv_TCWindow;        private System.Windows.Forms.Button btn_Edit;
+        private System.Windows.Forms.ListView lsv_TCWindow;
+        private System.Windows.Forms.Button btn_Edit;
         private System.Windows.Forms.ColumnHeader Test_Case_Name;
         private System.Windows.Forms.ColumnHeader Assigned;
     }

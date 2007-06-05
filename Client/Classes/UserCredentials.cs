@@ -11,7 +11,7 @@ namespace TestCaseComplete
         String userName, realName;
         bool admin;
         bool isValidUser = false;
-        int build, project, testCase, userAdmin, readWrite;
+        int build, project, testCase, userAdmin, readWrite;
         public UserCredentials(DataRow dr)
         {
             if (dr != null)
@@ -30,27 +30,27 @@ namespace TestCaseComplete
             {
                 isValidUser = false;
             }
-        }
+        }
         public string UserName
         {
             get { return userName; }
-        }
+        }
         public string RealName
         {
             get { return realName; }
-        }
+        }
         public bool Admin
         {
             get { return admin; }
-        }
+        }
         public int Build
         {
             get { return build; }
-        }        
+        }
         public int Project
         {
             get { return project; }
-        }
+        }
         public int TestCase
         {
             get { return testCase; }
@@ -63,7 +63,7 @@ namespace TestCaseComplete
 
         public int ReadWrite
         {
-            get { return readWrite; }        }
+            get { return readWrite; }        }
         public bool isUserValid
         {
             get { return isValidUser; }

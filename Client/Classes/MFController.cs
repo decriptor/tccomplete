@@ -11,33 +11,32 @@ namespace TestCaseComplete
 	class MFController
 	{
 		#region Variables
-		IDataAccess _dataAccess;
-		String URL = @"tcp://localhost:8080/DataAccess";
 		public static UserCredentials _loggedInUser;
 		#endregion
-        
+
 		#region Delegates
 		public delegate void ProjectRefreshHandler(ProjectTreeNode[] projects);
 		public event ProjectRefreshHandler ProjectRefresh;
 		public delegate void BuildRefreshHandler(BuildTreeNode[] builds);
 		public event BuildRefreshHandler BuildRefresh;
-		public delegate void TestCaseRefreshHandler(Array testCase);
+		public delegate void TestCaseRefreshHandler(ResultListViewItem[] testCases);
 		public event TestCaseRefreshHandler TestCaseRefresh;
+		public delegate void LoadTestCaseDetailsHandler(TestCase[] testCase);
+		public event LoadTestCaseDetailsHandler TestCaseDetails;
 		#endregion
 
 		public MFController(UserCredentials LoggedInUser)
 		{
 			_loggedInUser = LoggedInUser;
-			_dataAccess = (IDataAccess)Activator.GetObject(typeof(IDataAccess), URL);
 		}
 
 		public void RefreshProjects()
 		{
 			List<ProjectTreeNode> projects = new List<ProjectTreeNode>();
-            DataSet ds;
+			DataSet ds;
 			try
 			{
-				ds = _dataAccess.ProjectRetrieve(null, null);
+                ds = Client.dataAccess.ProjectRetrieve(null, null);
 				if ((ds.Tables.Count > 0) && (ds.Tables["projects"].Rows.Count > 0))
 				{
 					for (int i = 0; i < ds.Tables["projects"].Rows.Count; i++)
@@ -51,21 +50,20 @@ namespace TestCaseComplete
 			{
 				MessageBox.Show(ex.Message);
 			}
-
 			if (ProjectRefresh != null)
 			{
 				ProjectRefresh(projects.ToArray());
 			}
 		}
-        
+
 		internal void RefreshBuilds()
 		{
-            List<BuildTreeNode> builds = new List<BuildTreeNode>();
-			DataSet ds;
 
+			List<BuildTreeNode> builds = new List<BuildTreeNode>();
+			DataSet ds;
 			try
 			{
-				ds = _dataAccess.BuildRetrieve(null, null, null);
+				ds = Client.dataAccess.BuildRetrieve(null, null, null);
 				if ((ds.Tables.Count > 0) && (ds.Tables["builds"].Rows.Count > 0))
 				{
 					for (int i = 0; i < ds.Tables["builds"].Rows.Count; i++)
@@ -77,7 +75,7 @@ namespace TestCaseComplete
 			}
 			catch (Exception ex)
 			{
-                MessageBox.Show(ex.Message);
+				MessageBox.Show(ex.Message);
 			}
 			if (BuildRefresh != null)
 			{
@@ -85,35 +83,128 @@ namespace TestCaseComplete
 			}
 		}
 
-		internal void RefreshTestCases()
+		internal void RefreshTestCases(int buildID, int projectID)
 		{
-
-		}
-        
-		internal void LauchBuildDialog()
-		{
-			Form_BuildDialog BD = new Form_BuildDialog(_dataAccess);
-			if (BD.ShowDialog() == DialogResult.OK)
+			List<ResultListViewItem> buildTestCases = new List<ResultListViewItem>();
+			DataSet resultsDS;
+			try
 			{
-                RefreshBuilds();
-            }
-		}
-        
-		internal void LauchTestCaseCreateDialog()
-		{
-			Form_TestCaseDialog TCD = new Form_TestCaseDialog(_dataAccess, "Create Test Case");
-			if (TCD.ShowDialog() == DialogResult.OK)
+				resultsDS = Client.dataAccess.ResultsRetrieve(null, null, buildID, null, null, null, null, null);
+				if ((resultsDS.Tables.Count > 0) && (resultsDS.Tables["results"].Rows.Count > 0))
+				{
+					for (int i = 0; i < resultsDS.Tables["results"].Rows.Count; i++)
+					{
+						DataRow resultsDR = resultsDS.Tables["results"].Rows[i];
+						if (resultsDR["checkout_time"].ToString() == "")
+						{
+							buildTestCases.Add(new ResultListViewItem(resultsDR, projectID));
+						}
+					}
+				}
+			}
+			catch (Exception ex)
 			{
-                RefreshTestCases();
+				MessageBox.Show(ex.Message);
+			}
+			if (TestCaseRefresh != null)
+			{
+				TestCaseRefresh(buildTestCases.ToArray());
 			}
 		}
 
-        internal void LauchProjectCreateDialog()
+		internal void LoadTestCaseDetails(int testCaseID)
 		{
-			Form_CreateProject CEP = new Form_CreateProject(_dataAccess);
+			List<TestCase> TC = new List<TestCase>();
+			DataSet testCaseDS;
+			try
+			{
+				testCaseDS = Client.dataAccess.TestCaseRetrieve(testCaseID, null);
+				if ((testCaseDS.Tables.Count > 0) && (testCaseDS.Tables["testcases"].Rows.Count > 0))
+				{
+					DataRow testCaseDR = testCaseDS.Tables["testcases"].Rows[0];
+					TC.Add(new TestCase(testCaseDR));
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+			if (TestCaseDetails != null)
+			{
+				TestCaseDetails(TC.ToArray());
+			}		
+		}
+
+		internal void LaunchBuildDialog()
+		{
+			Form_BuildDialog BD = new Form_BuildDialog();
+			if (BD.ShowDialog() == DialogResult.OK)
+			{
+				//Update Builds View  //RefreshBuilds();
+			}
+		}
+		        
+		internal void LaunchTestCaseCreateDialog()
+		{
+			Form_TestCaseDialog TCD = new Form_TestCaseDialog();
+			if (TCD.ShowDialog() == DialogResult.OK)
+			{
+				//Update Test Case View  //RefreshTestCases();
+			}
+		}
+
+		internal void LaunchProjectCreateDialog()
+		{
+			Form_CreateProject CEP = new Form_CreateProject();
 			if (CEP.ShowDialog() == DialogResult.OK)
 			{
-                RefreshProjects();
+				//Update Project View RefreshProjects();
+			}
+		}
+
+		internal void LaunchTestCaseAssignerDialog()
+		{
+			Form_BuildTCAssigner BTCA = new Form_BuildTCAssigner();
+			if (BTCA.ShowDialog() == DialogResult.OK)
+			{
+				//Update Test Case View
+			}
+		}
+
+		internal void LaunchHistoryViewer()
+		{
+			Form_HistoryViewer HV = new Form_HistoryViewer();
+			HV.ShowDialog();
+		}
+
+		internal bool CheckResultAvailability(int _currentTestCase, int _currentBuild)
+		{
+			DataSet resultsDS = Client.dataAccess.ResultsRetrieve(null, _currentTestCase, _currentBuild, null, null, null, null, null);
+			if (resultsDS != null)
+			{
+				if ((resultsDS.Tables.Count > 0) && (resultsDS.Tables["results"].Rows.Count > 0))
+				{
+					DataRow resultsDR = resultsDS.Tables["results"].Rows[0];
+					if (resultsDR["checkout_time"].ToString() == "")
+					{
+						return true;
+					}
+				}
+			}
+			return false;
+		}
+
+		internal void CheckOutResult(int _currentTestCase, int _currentBuild)
+		{
+			Client.dataAccess.ResultsCheckOut(_currentTestCase, _currentBuild);
+		}
+
+		internal void EditTestCases()
+		{
+			Form_TestCaseViewer TCV = new Form_TestCaseViewer();
+			if (TCV.ShowDialog() == DialogResult.OK)
+			{
+				//Update Test Case View
 			}
 		}
 	}

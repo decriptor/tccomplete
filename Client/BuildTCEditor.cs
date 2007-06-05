@@ -8,11 +8,12 @@ using System.Windows.Forms;
 
 namespace TestCaseComplete
 {
-    public partial class Form_BuildEditor : Form
+    public partial class Form_BuildTCEditor : Form
     {
-        public Form_BuildEditor()
+        public Form_BuildTCEditor()
         {
             InitializeComponent();
         }
+
     }
 }

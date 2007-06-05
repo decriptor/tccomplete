@@ -6,7 +6,7 @@ namespace TestCaseComplete
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-
+        
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -18,10 +18,9 @@ namespace TestCaseComplete
                 components.Dispose();
             }
             base.Dispose(disposing);
-        }
-
+        }
         #region Windows Form Designer generated code
-
+        
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -68,21 +67,17 @@ namespace TestCaseComplete
 			// 
 			// txt_BuildNumber
 			// 
-			this.txt_BuildNumber.Location = new System.Drawing.Point(58, 42);
-			this.txt_BuildNumber.Name = "txt_BuildNumber";
+			this.txt_BuildNumber.Location = new System.Drawing.Point(58, 42);            this.txt_BuildNumber.Name = "txt_BuildNumber";
 			this.txt_BuildNumber.Size = new System.Drawing.Size(100, 20);
 			this.txt_BuildNumber.TabIndex = 1;
-			// 
-			// label3
+			//             // label3
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Location = new System.Drawing.Point(9, 84);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(63, 13);
-			this.label3.TabIndex = 4;
+			this.label3.Size = new System.Drawing.Size(63, 13);            this.label3.TabIndex = 4;
 			this.label3.Text = "Description:";
-			// 
-			// rtb_BuildDesc
+			//             // rtb_BuildDesc
 			// 
 			this.rtb_BuildDesc.Location = new System.Drawing.Point(12, 100);
 			this.rtb_BuildDesc.Name = "rtb_BuildDesc";
@@ -105,8 +100,7 @@ namespace TestCaseComplete
 			this.btn_Save.Location = new System.Drawing.Point(181, 197);
 			this.btn_Save.Name = "btn_Save";
 			this.btn_Save.Size = new System.Drawing.Size(75, 23);
-			this.btn_Save.TabIndex = 4;
-			this.btn_Save.Text = "Save";
+			this.btn_Save.TabIndex = 4;            this.btn_Save.Text = "Save";
 			this.btn_Save.UseVisualStyleBackColor = true;
 			this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
 			// 
@@ -147,11 +141,9 @@ namespace TestCaseComplete
 			this.Text = "Create New Build ";
 			this.ResumeLayout(false);
 			this.PerformLayout();
-
         }
-
-        #endregion
-
+        
+        #endregion
         private System.Windows.Forms.Label lbl_Project;
         private System.Windows.Forms.ComboBox cb_ProjectList;
         private System.Windows.Forms.Label lbl_buildNumber;

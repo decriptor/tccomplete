@@ -14,10 +14,10 @@ namespace TestCaseComplete
     public partial class Form_login : Form
     {
         #region Variables
+        internal UserCredentials loggedInUser;
         String URL = @"tcp://localhost:8080/DataAccess";
         IDataAccess dataAccess;
         DataSet userDS;
-        internal UserCredentials loggedInUser;
         #endregion
 
         public Form_login()
@@ -31,7 +31,7 @@ namespace TestCaseComplete
                 MessageBox.Show(ex.Message);
                 throw ex;
             }
-            InitializeComponent();
+            InitializeComponent();			
         }
 
         private void bLoginCancel_Click(object sender, EventArgs e)
@@ -80,5 +80,6 @@ namespace TestCaseComplete
                 }
             }
         }
+
     }
 }
