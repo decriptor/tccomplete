@@ -1,3 +1,8 @@
+********* 6/5/2007  *********
+
+Fixed the date time problem with the results table.  With .NET you have to use
+NULL and not '0000-00-00 00:00:00' or whatever it is.
+
 ********* 6/4/2007  *********
 
 Found a newer older version and merged many of the changes.  These changes
