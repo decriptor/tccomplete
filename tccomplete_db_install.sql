@@ -134,7 +134,7 @@ CREATE TABLE `results` (
   `update_time` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   `update_notes` mediumtext,
   `bug_id` tinytext,
-  `checkout_time` timestamp NULL default '0000-00-00 00:00:00',
+  `checkout_time` datetime NULL default NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `id` (`testcase_id`,`build_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;

@@ -48,7 +48,7 @@ namespace TestCaseComplete
                         _defaultPriority = Convert.ToInt32(testCaseRow["default_priority"]);
 						_shortDescription = testCaseRow["short_description"].ToString();
 						_statusDescription = testCaseRow["status_description"].ToString();
-						CalcTotalRunTime(Convert.ToInt32(testCaseRow["stup_time"]), Convert.ToInt32(testCaseRow["run_time"]),
+						CalcTotalRunTime(Convert.ToInt32(testCaseRow["setup_time"]), Convert.ToInt32(testCaseRow["run_time"]),
 							Convert.ToInt32(testCaseRow["clean_time"]));
 						//Results Row
                         _resultID = Convert.ToInt32(resultsRow["id"]);

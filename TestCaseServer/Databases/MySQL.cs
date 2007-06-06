@@ -5,6 +5,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using MySql.Data;
+using MySql.Data.Types;
 using MySql.Data.MySqlClient;
 using tccomplete.Interfaces;
 
