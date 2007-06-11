@@ -204,6 +204,8 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+-- user: admin
+-- pass: admin001
 INSERT INTO `users` VALUES ('admin','*A65C936CD4D76DC12FA3E50AB5F1C5026F66B729',1,1,'Administrator',1,1,1,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;

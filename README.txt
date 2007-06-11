@@ -5,6 +5,10 @@
 
 Database Setup
   mysql -u root -p < tccomplete_db_install.sql
+
+  admin account that gets generated:
+  user: admin
+  pass: admin001
   
   For additional users:
   from mysql> run, call tccomplete.sp_userInsert("user","password",1,1,"User Name",1,1,1,1);
