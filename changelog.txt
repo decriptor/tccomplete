@@ -1,3 +1,9 @@
+********* 6/11/2007  ********
+
+Update tccomplete_db_install.sql.  The user insert password variables didn't
+match.
+Updated the README.txt file with admin info and software being used.
+
 ********* 6/5/2007  *********
 
 Fixed the date time problem with the results table.  With .NET you have to use
