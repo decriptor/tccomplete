@@ -363,7 +363,7 @@ END|
 CREATE DEFINER=`tcdbuser`@`10.1.1.%` PROCEDURE `sp_UserInsert`(IN userName varchar(100), IN userPass varchar(100), IN userAdmin tinyint(1), IN admin tinyint(1), IN realName varchar(100), IN projectAdmin tinyint(1), IN buildAdmin tinyint(1), IN testCaseAdmin tinyint(1), IN readWriteAccess tinyint(1))
 BEGIN
 INSERT INTO users(Username, Password, user_admin, administrator, realname, tc_project, tc_build, tc_testcase, readwrite)
-VALUES (userName, PASSWORD(pass), userAdmin, admin, realName, projectAdmin, buildAdmin, testCaseAdmin, readWriteAccess);
+VALUES (userName, PASSWORD(userPass), userAdmin, admin, realName, projectAdmin, buildAdmin, testCaseAdmin, readWriteAccess);
 END|
 -- ####Users Login####
 CREATE DEFINER=`tcdbuser`@`10.1.1.%` PROCEDURE `sp_UserLogin`(LoginUser varchar(100), LoginPass varchar(100))
